@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Isharon inventory</title>
+
+    <script type="text/javascript" src="js/jszip.js"></script>
+    <script type="text/javascript" src="js/xlsx.js"></script>
+    <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="js/jquery.dynatable.js"></script>
+    <script type="text/javascript" src="js/sort.js"></script>
+    <script type="text/javascript" src="js/view.js"></script>
+
+    <link rel="stylesheet" media="all" href="css/dynatable.css" />
+    <link rel="stylesheet" media="all" href="css/bootstrap.css" />
+    <link rel="stylesheet" media="all" href="css/view.css" />
+
+    <script>
+        var X = XLSX;
+        var nounMatches = ["\\s\\S*set (with|on)\\s", "\\s\\S*ing (a|an|the)\\s",
+            "\\s\\S*ly\\s.*ed\\s(with|from|to|of|in|over|like)",
+            "\\s\\S*ed\\sof\\s.*ed\\s.*with",
+            "\\sof\\s.*\\S{2,}ed\\s.*with",
+            "\\s\\S*ed\\s.*and\\s.*with\\s", "\\s\\S*ed\\s.*and\\s.*like\\s",
+            "\\swith\\s.*\\S*ed (in|a|by)\\s",
+            "\\s\\S*(ed|aid|hung|bound) (with|to|of|in|over|like)\\s",
+            "\\swith\\s",
+            "\\sfeaturing\\s",
+            "\\s\\S*ed from\\s", "\\s\\S*made (from|of)\\s",
+            "\\s\\S*ed (in|a|by)\\s",
+            "\\s\\S*that\\s.*in\\s",
+            "\\s\\S*(of|from) a\\s"
+        ];
+
+        $(document).ready(function() {
+            $('form').submit(function() {
+                return false;
+            });
+
+            $("#load-button").mousedown(function(e) {
+                loadingStarted();
+                load($("#url").val());
+            });
+
+            $("#file-dialog").change(function(e) {
+                loadingStarted();
+                handleFile(e);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+
+    <div id="load-input">
+        <!-- <div id="load-ajax">
+            <form class="form-inline">
+                <div class="form-group">
+                    <input class="form-control" type="text" id="url" value="http://www.elanthia.org/TraderShops/TraderShopInventory.xls"/>
+                </div>
+                <button type="button" class="btn btn-default" id="load-button">Load</button>
+            </form>
+        </div>
+        <br/> -->
+        <div id="load-file" style="width: 400px; margin: 0 auto;">
+            <form class="form-inline">
+                <div class="form-group">
+                    <p><input type="file" name="xlfile" id="file-dialog" class="btn btn-file" />Click here to select "TraderShopInventory.xls"</p>
+                </div>
+                <br/><br/>
+                <p style="text-align: center;"><a href="http://www.elanthia.org/TraderShops/TraderShopInventory.xls">[Download TraderShopInventory.xls]</a></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <table id="table" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th data-dynatable-column="City">City</th>
+                        <th data-dynatable-column="Date">Date</th>
+                        <th data-dynatable-column="Item" class="bold">Item</th>
+                        <th data-dynatable-column="Kprice">Kronars</th>
+                        <th data-dynatable-column="Plats">Plats</th>
+                        <th data-dynatable-column="Price">Price</th>
+                        <th data-dynatable-column="Shop">Shop</th>
+                        <th data-dynatable-column="Surface">Surface</th>
+                        <th data-dynatable-column="Time">Time</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
