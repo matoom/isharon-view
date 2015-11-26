@@ -18,15 +18,16 @@
         var X = XLSX;
         var nounMatches = ["\\s\\S*set (with|on)\\s", "\\s\\S*ing (a|an|the)\\s",
             "\\s\\S*ly\\s.*ed\\s(with|from|to|of|in|over|like)",
-            "\\s\\S*ed\\sof\\s.*ed\\s.*with",
+            "\\s\\S{2,}ed\\sof\\s.*ed\\s.*with",
             "\\sof\\s.*\\S{2,}ed\\s.*with",
-            "\\s\\S*ed\\s.*and\\s.*with\\s", "\\s\\S*ed\\s.*and\\s.*like\\s",
-            "\\swith\\s.*\\S*ed (in|a|by)\\s",
-            "\\s\\S*(ed|aid|hung|bound) (with|to|of|in|over|like)\\s",
+            "\\s\\S{2,}ed\\s.*and\\s.*with\\s", "\\s\\S{2,}ed\\s.*and\\s.*like\\s",
+            "\\swith\\s.*\\S{2,}ed (in|a|by)\\s",
+            "\\s\\S{2,}(ed|aid|hung|bound) (with|to|of|in|over|like|upon)\\s",
             "\\swith\\s",
             "\\sfeaturing\\s",
-            "\\s\\S*ed from\\s", "\\s\\S*made (from|of)\\s",
-            "\\s\\S*ed (in|a|by)\\s",
+            "\\sthat resembles\\s",
+            "\\s\\S{2,}ed from\\s", "\\s\\S*made (from|of)\\s",
+            "\\s\\S{2,}ed (in|a|by)\\s",
             "\\s\\S*that\\s.*in\\s",
             "\\s\\S*(of|from) a\\s"
         ];

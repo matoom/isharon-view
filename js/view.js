@@ -54,7 +54,7 @@ function process_wb(wb) {
                         searchLink += "e";
                         searchLink += "</a></div>";
 
-                        if(/pair of|series of|set of/.test(record['Item'])) {
+                        if(/^pair of|^series of|^set of/.test(record['Item'])) {
                             return record['Item'].replace(/(\S+)\s*s($|\s)/, ' <b>$1s</b> ') + searchLink;
                         }
 
