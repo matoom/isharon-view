@@ -8,14 +8,34 @@
  *
  * Date: Tue Jan 02 2014
  */
-th {
-    background: #617C58;
+
+table {
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+
+    -moz-box-shadow: 0 1px 2px #d1d1d1;
+    -webkit-box-shadow: 0 1px 2px #d1d1d1;
+    box-shadow: 0 1px 2px #d1d1d1;
 }
+
+th {
+    font-weight: normal;
+    background: #617C58;
+
+    background: -webkit-gradient(linear, left top, left bottom, from(#617C58), to(#618258));
+    background: -moz-linear-gradient(top,  #617C58,  #618258);
+
+    -webkit-box-shadow: 0 2px 2px -2px #000000;
+    -moz-box-shadow: 0 2px 2px -2px #000000;
+    box-shadow: 0 2px 2px -2px #000000;
+}
+
 th a {
-    color: #fff;
+    color: white;
 }
 th a:hover, th a:visited {
-    color: #fff;
+    color: white;
 }
 
 .dynatable-search {
@@ -57,7 +77,7 @@ th a:hover, th a:visited {
 }
 
 .dynatable-active-page {
-    background: #006a72;
+    background: #bdbdbd;
     border-radius: 5px;
     color: #fff;
 }

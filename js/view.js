@@ -34,7 +34,7 @@ function process_wb(wb) {
                 sorts: {'Kprice': -1},
                 records: output["Inventory"],
                 perPageDefault: 250,
-                perPageOptions: [100, 250, 500, 1000],
+                perPageOptions: [20, 100, 250, 500, 1000],
                 sortTypes: {
                     'Price': 'number',
                     'Plats': 'platsSort',
@@ -50,23 +50,24 @@ function process_wb(wb) {
                     if(record['Item']) {
                         var searchLink = " <div style=\"float: right;\"><a class=\"link\" target=\"_blank\" " +
                             "href=\"https://elanthipedia.play.net/mediawiki/index.php?search=" +
-                            encodeURIComponent(record['Item']) + "&go=Go&title=Special%3ASearch\">";
-                        searchLink += "e";
-                        searchLink += "</a></div>";
+                            encodeURIComponent(record['Item']) + "&go=Go&title=Special%3ASearch\">e</a></div";
 
-                        if(/^pair of|^series of|^set of/.test(record['Item'])) {
-                            return record['Item'].replace(/(\S+)\s*s($|\s)/, ' <b>$1s</b> ') + searchLink;
+                        // if item contains 'of' then match only white listed entries
+                        if(/\sof\s/.test(record['Item'])) {
+                            if(!new RegExp(whiteListOfs).test(record['Item'])) {
+                                return record['Item'] + searchLink;
+                            }
                         }
 
                         for(var i = 0; i < nounMatches.length; i++) {
                             var regex = new RegExp("(\\S+)\\s*(?=" + nounMatches[i] + ")");
 
                             if(record['Item'].search(regex) != -1) {
-                                return record['Item'].replace(regex, ' <b>$1</b> ') + searchLink;
+                                return record['Item'].replace(regex, ' <span class=\"bold\">$1</span> ') + searchLink;
                             }
                         }
                     }
-                    return record['Item'].replace(/\s([a-z']+(?:-[a-z']+)?)$/, ' <b>$1</b>') + searchLink;
+                    return record['Item'].replace(/\s([a-z']+(?:-[a-z']+)?)$/, ' <span class=\"bold\">$1</span>') + searchLink;
                 }
             }
         });
@@ -121,5 +122,5 @@ function loadingStarted() {
 
 function loadingComplete() {
     $(".panel").show();
-    $('body').addClass('loaded');
+    $("#loader-wrapper").hide();
 }

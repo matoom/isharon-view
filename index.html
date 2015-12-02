@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Isharon inventory</title>
+    <title>Isharon's Trader Shop Inventory</title>
 
     <script type="text/javascript" src="js/jszip.js"></script>
     <script type="text/javascript" src="js/xlsx.js"></script>
@@ -16,19 +16,20 @@
 
     <script>
         var X = XLSX;
-        var nounMatches = ["\\s\\S*set (with|on)\\s", "\\s\\S*ing (a|an|the)\\s",
+        var whiteListOfs = "(\\sof (an|a|the|tiny)\\s)|\\s\\S{2,}ed\\sof|((image|bolt|made|pair|set|(^|\\s)\\S*s) of)";
+        var nounMatches = ["\\s\\S*set (with|within|on|atop)\\s", "\\s\\S*ing (a|an|the|from)\\s",
             "\\s\\S*ly\\s.*ed\\s(with|from|to|of|in|over|like)",
             "\\s\\S{2,}ed\\sof\\s.*ed\\s.*with",
-            "\\sof\\s.*\\S{2,}ed\\s.*with",
-            "\\s\\S{2,}ed\\s.*and\\s.*with\\s", "\\s\\S{2,}ed\\s.*and\\s.*like\\s",
-            "\\swith\\s.*\\S{2,}ed (in|a|by)\\s",
-            "\\s\\S{2,}(ed|aid|hung|bound) (with|to|of|in|over|like|upon)\\s",
+            "\\swith\\s.*\\S{2,}ed (in|a|by|like a)\\s",
+            "\\s\\S{2,}(ed|en|aid|hung|bound) (with|and|to|of|in|into|over|like|upon|from|at|close at|together|atop)\\s",
+            "\\s(hung|bound|wrapped|strung) (in|together|around|on|over|like|upon|from|with|by)\\s",
             "\\swith\\s",
-            "\\sfeaturing\\s",
-            "\\sthat resembles\\s",
-            "\\s\\S{2,}ed from\\s", "\\s\\S*made (from|of)\\s",
-            "\\s\\S{2,}ed (in|a|by)\\s",
+            "\\s(featuring|trailing|cascading|dangling|displaying)\\s",
+            "\\sthat (resembles|appears|looks)\\s",
+            "\\s\\S{2,}ed from\\s", "\\s\\S*made (from|of|to)\\s",
+            "\\s\\S{2,}ed (a|by|on)\\s",
             "\\s\\S*that\\s.*in\\s",
+            "\\s\\S*in the\\s",
             "\\s\\S*(of|from) a\\s"
         ];
 
@@ -38,11 +39,13 @@
             });
 
             $("#load-button").mousedown(function(e) {
+                e.preventDefault();
                 loadingStarted();
                 load($("#url").val());
             });
 
             $("#file-dialog").change(function(e) {
+                e.preventDefault();
                 loadingStarted();
                 handleFile(e);
             });
@@ -60,12 +63,12 @@
         <!-- <div id="load-ajax">
             <form class="form-inline">
                 <div class="form-group">
-                    <input class="form-control" type="text" id="url" value="http://www.elanthia.org/TraderShops/TraderShopInventory.xls"/>
+                    <input class="form-control" type="text" id="url" value="http://www.elanthia.org/TraderShops/TraderShopInventory.xls" />
                 </div>
                 <button type="button" class="btn btn-default" id="load-button">Load</button>
             </form>
         </div>
-        <br/> -->
+        <br/>-->
         <div id="load-file" style="width: 400px; margin: 0 auto;">
             <form class="form-inline">
                 <div class="form-group">
@@ -79,12 +82,12 @@
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <table id="table" class="table table-bordered">
+            <table id="table" class="table table-bordered table-curved">
                 <thead>
                     <tr>
                         <th data-dynatable-column="City">City</th>
-                        <th data-dynatable-column="Date">Date</th>
-                        <th data-dynatable-column="Item" class="bold">Item</th>
+                        <th data-dynatable-column="Date" class="no-wrap">Date</th>
+                        <th data-dynatable-column="Item" class="highlight">Item</th>
                         <th data-dynatable-column="Kprice">Kronars</th>
                         <th data-dynatable-column="Plats">Plats</th>
                         <th data-dynatable-column="Price">Price</th>
