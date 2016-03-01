@@ -17,11 +17,12 @@
     <script>
         var X = XLSX;
         var whiteListOfs = "(\\sof (an|a|the|tiny)\\s)|\\s\\S{2,}ed\\sof|((image|bolt|made|pair|set|(^|\\s)\\S*s) of)";
-        var nounMatches = ["\\s\\S*set (with|within|on|atop)\\s", "\\s\\S*ing (a|an|the|from)\\s", "\\s\\S*ming with\\s",
+        var nounMatches = ["\\s(cut|molded) into\\s",
+            "\\s\\S*set (with|within|on|atop)\\s", "\\s\\S*ing (a|an|the|from)\\s", "\\s\\S*ming with\\s",
             "\\s\\S*ly\\s.*ed\\s(with|from|to|of|in|over|like)",
             "\\s\\S{2,}ed\\sof\\s.*ed\\s.*with",
             "\\swith\\s.*\\S{2,}ed (in|a|by|like a)\\s",
-            "\\s\\S{2,}(ed|en|aid|hung|bound) (with|and|to|of|in|into|over|like|upon|from|at|close at|together|atop)\\s",
+            "\\s\\S{2,}(ed|en|aid|hung|bound) (with|and|to|of|in|over|like|upon|from|at|close at|together|atop)\\s",
             "\\s(hung|bound|wrapped|strung|cast) (in|together|around|on|over|like|upon|from|with|by)\\s",
             "\\swith\\s",
             "\\s(featuring|trailing|cascading|dangling|displaying)\\s",

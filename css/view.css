@@ -1,5 +1,5 @@
 a {
-    text-decoration: none !important;
+    text-decoration: none;
 }
 
 body {
@@ -29,11 +29,15 @@ td.highlight {
 
 a.link {
     font-variant: small-caps;
-    text-decoration: none;
     font-size: 12px;
 }
 
-a.link:link, a.link:visited, a.link:active {
+a.link:visited {
+    color: #C0C0C0;;
+}
+
+a.link:link, a.link:active {
+    text-decoration: none;
     color: #808080;
 }
 
