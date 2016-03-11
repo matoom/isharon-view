@@ -16,8 +16,8 @@
 
     <script>
         var X = XLSX;
-        var whiteListOfs = "(\\sof (an|a|the|tiny)\\s)|\\s\\S{2,}ed\\sof|((image|bolt|made|pair|set|(^|\\s)\\S*s) of)";
-        var nounMatches = ["\\s(cut|molded) into\\s",
+        var whiteListOfs = "(\\sof (an|a|the|tiny)\\s)|\\s\\S{2,}ed\\sof|((image|bolt|made|pair|set|(^|\\s)\\S*s) of|made from)";
+        var nounMatches = ["made from", "\\s(cut|molded|wrought) (into|in|with)\\s",
             "\\s\\S*set (with|within|on|atop)\\s", "\\s\\S*ing (a|an|the|from)\\s", "\\s\\S*ming with\\s",
             "\\s\\S*ly\\s.*ed\\s(with|from|to|of|in|over|like)",
             "\\s\\S{2,}ed\\sof\\s.*ed\\s.*with",
@@ -94,7 +94,7 @@
                         <th data-dynatable-column="Price">Price</th>
                         <th data-dynatable-column="Shop">Shop</th>
                         <th data-dynatable-column="Surface">Surface</th>
-                        <th data-dynatable-column="Time">Time</th>
+                        <!-- <th data-dynatable-column="Time">Time</th> -->
                     </tr>
                 </thead>
                 <tbody></tbody>

@@ -34,6 +34,7 @@ th {
 th a {
     color: white;
 }
+
 th a:hover, th a:visited {
     color: white;
 }

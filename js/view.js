@@ -68,6 +68,15 @@ function process_wb(wb) {
                         }
                     }
                     return record['Item'].replace(/\s([a-z']+(?:-[a-z']+)?)$/, ' <span class=\"bold\">$1</span>') + searchLink;
+                },
+                'Date' : function(record) {
+                    return "<div class='tooltips'>" +
+                            record['Date'] +
+                                "<span>" +
+                                    record['Time'] +
+                                "</span>" +
+                           "</div>";
+
                 }
             }
         });
@@ -85,9 +94,7 @@ function load(url){
             for (var i = 0; i != data.length; ++i) {
                 arr[i] = String.fromCharCode(data[i]);
             }
-
             var wb = XLSX.read(arr.join(""), {type: "binary"});
-
             process_wb(wb);
         };
     } else {
