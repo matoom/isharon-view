@@ -29,6 +29,8 @@ th {
     -webkit-box-shadow: 0 2px 2px -2px #000000;
     -moz-box-shadow: 0 2px 2px -2px #000000;
     box-shadow: 0 2px 2px -2px #000000;
+
+    white-space: nowrap;
 }
 
 th a {
